@@ -38,14 +38,8 @@ class Announcement:
         return announcements
 
     @classmethod
-    def create_announcement(cls, title, description, amount, user_id):
+    def create_announcement(cls, data):
         query = "INSERT INTO announcements (title, description, amount, user_id) VALUES ( %(title)s , %(description)s , %(amount)s , %(user_id)s )"
-        # asegúrate de llamar a la función connectToMySQL con el esquema al que te diriges
-        announcement_id = connectToMySQL('social_credit').query_db(query, {
-            "title": title,
-            "description": description,
-            "amount": amount,
-            "user_id": user_id
-        })
+        announcement_id = connectToMySQL('social_credit').query_db(query, data)
         return announcement_id
 
